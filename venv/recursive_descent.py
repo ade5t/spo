@@ -173,6 +173,8 @@ def check_number():
     if isNum(global_variables.token):
         global_variables.postfix_string += global_variables.token
         global_variables.token = get_token()
+    else:
+        print("Введена дичь")
 
 if __name__ == '__main__':
     #Временная дичь для проверки
