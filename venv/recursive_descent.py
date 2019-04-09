@@ -244,7 +244,7 @@ def check_brackets():
         token = get_token()
         check_binary_plus_minus()
         if (token != ")"):
-            print("В скобках дичь рекурсия")
+            print("Неизвестная ошибка со скобками")
         else:
             token = get_token()
     else:
@@ -262,11 +262,6 @@ def check_number():
     if isNum(token):
         postfix_string += token
         token = get_token()
-    else:
-        if (token != "!" and token != "(" and index == len(infix_string)):
-            print("В первом токене дичь рекурсия")
-        elif (len(token) > 1):
-            print("В операнде дичь рекурсия")
 
 if __name__ == '__main__':
     input_string = input()
