@@ -11,7 +11,7 @@ input_string = ""
 folding_string = ""
 infix_string = ""
 postfix_string = ""
-result = ""
+result_string = ""
 num_brackets = 0
 
 # Функция проверки свернутой и закодированной инфиксной строки
@@ -204,7 +204,7 @@ def check_binary_plus_minus():
         tmp_token = token
         token = get_token()
         check_binary_mul_div()
-        postfix_string += tmp_token
+        postfix_string += tmp_token + " "
 
 # Функция, проверяющая бинарные "*", "/"
 # Вход -
@@ -218,7 +218,7 @@ def check_binary_mul_div():
         tmp_token = token
         token = get_token()
         check_unary_minus()
-        postfix_string += tmp_token
+        postfix_string += tmp_token + " "
 
 # Функция, проверяющая унарный "-"
 # Вход -
@@ -232,7 +232,7 @@ def check_unary_minus():
         tmp_token = token
         token = get_token()
         check_brackets()
-        postfix_string += tmp_token
+        postfix_string += tmp_token + " "
 
 # Функция, проверяющая "(", ")"
 # Вход -/
@@ -260,7 +260,7 @@ def check_number():
     global index
 
     if isNum(token):
-        postfix_string += token
+        postfix_string += token + " "
         token = get_token()
 
 if __name__ == '__main__':
