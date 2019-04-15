@@ -16,7 +16,10 @@ if __name__ == '__main__':
             global_func_val.token = global_func_val.get_token()
             recursive_descent.check_binary_plus_minus()
             global_func_val.result_string = global_func_val.postfix_string.replace("!", "-")
-            print("Рекурсивный спуск:" + global_func_val.postfix_string)
+            print("Входная строка: " + global_func_val.input_string)
+            print("Упрощенная строка: " + global_func_val.folding_string)
+            print("Закодированная строка: " + global_func_val.infix_string)
+            print("Рекурсивный спуск: " + global_func_val.postfix_string)
 
             global_func_val.index = 0
             global_func_val.token = ""
@@ -26,6 +29,8 @@ if __name__ == '__main__':
             global_func_val.token = global_func_val.get_token()
             sort_station.dijkstra_method()
             global_func_val.result_string = global_func_val.postfix_string.replace("!", "-")
-            print("Сортировочная ста:" + global_func_val.postfix_string)
+            print("Алгоритм Дейкстры: " + global_func_val.postfix_string)
+            print("Выходная строка с рекурсивного спуска: " + global_func_val.result_string)
+            print("Выходная строка с алгоритма Дейкстры: " + global_func_val.result_string)
         else:
             print(isOk)
