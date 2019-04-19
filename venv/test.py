@@ -1,6 +1,7 @@
 import sort_station
 import recursive_descent
 import global_func_val
+
 if __name__ == '__main__':
     global_func_val.input_string = input()
     if (global_func_val.input_string == ""):
