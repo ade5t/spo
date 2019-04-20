@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(3)
-        self.tableWidget.setRowCount(1)
+        self.tableWidget.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
