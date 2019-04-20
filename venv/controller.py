@@ -75,6 +75,7 @@ class mainWindow(QtWidgets.QMainWindow):
         while (row_count >= 0):
             self.ui.tableWidget.removeRow(row_count)
             row_count -= 1
+#             сюда вычисление postfix_string через get_token и стек.
 
 
 
