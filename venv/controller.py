@@ -15,7 +15,11 @@ class mainWindow(QtWidgets.QMainWindow):
         global_func_val.input_string = self.ui.lineEdit.text();
         self.ui.textBrowser.setText("")
         self.ui.lineEdit_2.setText("")
-        self.ui.tableWidget.clearContents()
+        row_count = self.ui.tableWidget.rowCount()
+        while (row_count >= 0):
+            self.ui.tableWidget.removeRow(row_count)
+            row_count -= 1
+
         if (global_func_val.input_string == ""):
             self.ui.textBrowser.append("Вам необходимо ввести исходное выражение")
         else:
@@ -66,6 +70,7 @@ class mainWindow(QtWidgets.QMainWindow):
         sys.exit(app.exec())
 
     def find_value_button(self):
+        stack = []
         row_count = self.ui.tableWidget.rowCount()
         while (row_count >= 0):
             self.ui.tableWidget.removeRow(row_count)
