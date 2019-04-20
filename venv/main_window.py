@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(3)
-        self.tableWidget.setRowCount(0)
+        self.tableWidget.setRowCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -128,6 +128,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(MainWindow.translate_button)
+        self.pushButton_2.clicked.connect(MainWindow.find_value_button)
         self.action_4.triggered.connect(MainWindow.exit_button)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
