@@ -47,6 +47,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.pushButton_2)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit_2.setReadOnly(True)
         self.horizontalLayout_2.addWidget(self.lineEdit_2)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.verticalLayout_3.addLayout(self.verticalLayout)
