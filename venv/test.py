@@ -14,7 +14,7 @@ if __name__ == '__main__':
             global_func_val.index = 0
             global_func_val.token = ""
             global_func_val.num_brackets = 0
-            global_func_val.token = global_func_val.get_token()
+            global_func_val.token = global_func_val.get_token(global_func_val.infix_string)
             recursive_descent.check_binary_plus_minus()
             global_func_val.result_string = global_func_val.postfix_string.replace("!", "-")
             print("Входная строка: " + global_func_val.input_string)
@@ -27,7 +27,7 @@ if __name__ == '__main__':
             global_func_val.postfix_string = ""
             global_func_val.result_string = ""
             global_func_val.num_brackets = 0
-            global_func_val.token = global_func_val.get_token()
+            global_func_val.token = global_func_val.get_token(global_func_val.infix_string)
             sort_station.dijkstra_method()
             global_func_val.result_string = global_func_val.postfix_string.replace("!", "-")
             print("Алгоритм Дейкстры: " + global_func_val.postfix_string)

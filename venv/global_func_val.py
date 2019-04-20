@@ -21,56 +21,86 @@ def string_validation(str):
     tmp_num_brackets = 0
     tmp_math_op = {'+', '-', '*', '/'}
     if (not str[0] in {'(', '!'} and not str[0].isnumeric()):
-        return "Первый токен введен неверно"
+        return 0
     elif (str[len(str)-1] != ")" and not str[len(str)-1].isnumeric()):
-        return "Последний токен введен неверно"
+        return 1
     elif(str[len(str)-1] == ")"):
         tmp_num_brackets -= 1
 
-    state = get_token()
-    tmp_token = get_token()
+    state = get_token(infix_string)
+    tmp_token = get_token(infix_string)
     while (tmp_token != None):
         if (state == "!"):
             if (tmp_token == "(" or isNum(tmp_token)):
                 prev_position = index
                 state = tmp_token
-                tmp_token = get_token()
+                tmp_token = get_token(infix_string)
             else:
-                return ' '.join(i.__str__() for i in ('После' ' - ' 'с позицей ', prev_position, ' стоит некорректный токен'))
+                tmp_str = str[prev_position - 1: prev_position + 2]
+                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                index = tmp_pos_error_1
+                tmp_str = get_token(input_string)
+                tmp_str = get_token(input_string)
+                tmp_pos_error_2 = index
+                return (state.replace("!", "-"), tmp_pos_error_1, tmp_pos_error_2)
         elif (state == "("):
             if (tmp_token == "(" or tmp_token == "!" or isNum(tmp_token)):
                 prev_position = index
                 state = tmp_token
-                tmp_token = get_token()
+                tmp_token = get_token(infix_string)
                 tmp_num_brackets += 1
             else:
-                return ' '.join(i.__str__() for i in ('После' ' ( ' 'с позицей ', prev_position, ' стоит некорректный токен'))
+                tmp_str = str[prev_position - 1: prev_position + 2]
+                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                index = tmp_pos_error_1
+                tmp_str = get_token(input_string)
+                tmp_str = get_token(input_string)
+                tmp_pos_error_2 = index
+                return (state.replace("!", "-"), tmp_pos_error_1, tmp_pos_error_2)
         elif (state == ")"):
             if (tmp_token == ")" or tmp_token in tmp_math_op):
                 prev_position = index
                 state = tmp_token
-                tmp_token = get_token()
+                tmp_token = get_token(infix_string)
                 tmp_num_brackets -= 1
             else:
-                return ' '.join(i.__str__() for i in ('После' ' ) ' 'с позицей ', prev_position, ' стоит некорректный токен'))
+                tmp_str = str[prev_position - 1: prev_position + 2]
+                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                index = tmp_pos_error_1
+                tmp_str = get_token(input_string)
+                tmp_str = get_token(input_string)
+                tmp_pos_error_2 = index
+                return (state.replace("!", "-"), tmp_pos_error_1, tmp_pos_error_2)
         elif (state in tmp_math_op):
             if (tmp_token == "(" or tmp_token == "!" or isNum(tmp_token)):
                 prev_position = index
                 state = tmp_token
-                tmp_token = get_token()
+                tmp_token = get_token(infix_string)
             else:
-                return ' '.join(i.__str__() for i in ('После', state, 'с позицей ', prev_position, ' стоит некорректный токен'))
+                tmp_str = str[prev_position - 1: prev_position + 2]
+                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                index = tmp_pos_error_1
+                tmp_str = get_token(input_string)
+                tmp_str = get_token(input_string)
+                tmp_pos_error_2 = index
+                return (state.replace("!", "-"), tmp_pos_error_1, tmp_pos_error_2)
         elif (isNum(state)):
             if (tmp_token in tmp_math_op or tmp_token == ")"):
                 prev_position = index
                 state = tmp_token
-                tmp_token = get_token()
+                tmp_token = get_token(infix_string)
             else:
-                return ' '.join(i.__str__() for i in ('После', state, 'с позицей ', prev_position, ' стоит некорректный токен'))
+                tmp_str = str[prev_position - 1: prev_position + 2]
+                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                index = tmp_pos_error_1
+                tmp_str = get_token(input_string)
+                tmp_str = get_token(input_string)
+                tmp_pos_error_2 = index
+                return (state.replace("!", "-"), tmp_pos_error_1, tmp_pos_error_2)
         else:
-            return 'Неизвестная ошибка'
+            return 3
     if (tmp_num_brackets != 0):
-        return "Количество '(' не соответсвует количеству ')'"
+        return 2
 
 # Функция, проверяющая является ли подстрока вещественным числом
 # Вход - подстрока, содержащая предположительно число
@@ -153,36 +183,36 @@ def unary_minus_coding(str):
 # Фукнция, считывающая очередную лексему для анализа
 # Вход -
 # Выход - лексема: либо число, либо знак операции
-def get_token():
+def get_token(str):
     global math_op
     global infix_string
     global index
 
     tmp_str = ""
-    if (index < len(infix_string)):
-        if (infix_string[index] == "+"):
+    if (index < len(str)):
+        if (str[index] == "+"):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == "-"):
+            return str[index-1]
+        elif (str[index] == "-"):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == "*"):
+            return str[index-1]
+        elif (str[index] == "*"):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == "/"):
+            return str[index-1]
+        elif (str[index] == "/"):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == "("):
+            return str[index-1]
+        elif (str[index] == "("):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == ")"):
+            return str[index-1]
+        elif (str[index] == ")"):
             index += 1
-            return infix_string[index-1]
-        elif (infix_string[index] == "!"):
+            return str[index-1]
+        elif (str[index] == "!"):
             index += 1
-            return infix_string[index-1]
+            return str[index-1]
         else:
-            while (index < len(infix_string) and not (infix_string[index] in math_op)):
-                tmp_str += infix_string[index]
+            while (index < len(str) and not (str[index] in math_op)):
+                tmp_str += str[index]
                 index += 1
             return tmp_str
