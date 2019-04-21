@@ -36,8 +36,12 @@ def string_validation(str):
                 state = tmp_token
                 tmp_token = get_token(infix_string)
             else:
-                tmp_str = str[prev_position - 1: prev_position + 2]
-                tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
+                if (prev_position == 0):
+                    tmp_str = str[prev_position: prev_position + 2]
+                    tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position, len(input_string))
+                else:
+                    tmp_str = str[prev_position - 1: prev_position + 2]
+                    tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
                 index = tmp_pos_error_1
                 tmp_str = get_token(input_string)
                 tmp_str = get_token(input_string)
@@ -172,7 +176,8 @@ def unary_minus_coding(str):
     tmp_index = len(str)-1
     while tmp_index >= 0:
         tmp_str = ""
-        if (str[tmp_index] == "-" and (str[tmp_index+1] == "(" or (str[tmp_index+1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index-1]).isnumeric())):
+        # (str[tmp_index] == "-" and (str[tmp_index + 1] == "(" or (str[tmp_index + 1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index - 1]).isnumeric())):
+        if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(") or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
             tmp_str += str[0: tmp_index]
             tmp_str += "!"
             tmp_str += str[tmp_index+1: len(str)]
