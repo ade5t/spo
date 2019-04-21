@@ -212,7 +212,9 @@ def get_token(str):
             index += 1
             return str[index-1]
         else:
-            while (index < len(str) and not (str[index] in math_op)):
+            while (index < len(str) and not (str[index] in math_op) and str[index] != " "):
                 tmp_str += str[index]
+                index += 1
+            if (index < len(str) and str[index] == " "):
                 index += 1
             return tmp_str

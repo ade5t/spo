@@ -70,14 +70,53 @@ class mainWindow(QtWidgets.QMainWindow):
         sys.exit(app.exec())
 
     def find_value_button(self):
-        stack = []
         row_count = self.ui.tableWidget.rowCount()
         while (row_count >= 0):
             self.ui.tableWidget.removeRow(row_count)
             row_count -= 1
-#             сюда вычисление postfix_string через get_token и стек.
 
+        row = 0
+        stack = []
+        global_func_val.index = 0
+        tmp_token = global_func_val.get_token(global_func_val.postfix_string)
+        while tmp_token!= None:
+            if global_func_val.isNum(tmp_token):
+                stack.append(tmp_token)
+                data = []
+                data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                data.append(QtWidgets.QTableWidgetItem("поместить в стек"))
+                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                data.append(QtWidgets.QTableWidgetItem(stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "").replace(" ", "→")))
+                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                self.ui.tableWidget.insertRow(row)
+                for i in range(3):
+                    self.ui.tableWidget.setItem(row, i, data[i])
+                row += 1
+            elif (tmp_token == "!"):
+                tmp_val_1 = stack.pop()
+                tmp_val_1 = "-" + tmp_val_1
+                stack.append(tmp_val_1)
+            elif (tmp_token == "+"):
+                tmp_val_2 = stack.pop()
+                tmp_val_1 = stack.pop()
+                stack.append(int(tmp_val_1) + int(tmp_val_2))
+            elif (tmp_token == "-"):
+                tmp_val_2 = stack.pop()
+                tmp_val_1 = stack.pop()
+                stack.append(int(tmp_val_1) - int(tmp_val_2))
+            elif (tmp_token == "*"):
+                tmp_val_2 = stack.pop()
+                tmp_val_1 = stack.pop()
+                stack.append(int(tmp_val_1) * int(tmp_val_2))
+            elif (tmp_token == "/"):
+                tmp_val_2 = stack.pop()
+                tmp_val_1 = stack.pop()
+                stack.append(int(tmp_val_1) / int(tmp_val_2))
+            tmp_token = global_func_val.get_token(global_func_val.postfix_string)
 
+#             сюда вычисление postfix_string через get_token и стек. Вставляктся строка, потом создаются items, они втсавляются
+#             в строку в каждый столбец и делаются только для чтения
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
