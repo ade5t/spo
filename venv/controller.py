@@ -4,7 +4,19 @@ import recursive_descent
 import global_func_val
 import sys
 import time
+import about_program
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QLocale, QTranslator, QLibraryInfo
+
+class Dialog(QtWidgets.QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = about_program.Ui_Dialog()
+        self.ui.setupUi(self)
+
+    def exit(self):
+        self.close()
+
 
 class mainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -55,7 +67,7 @@ class mainWindow(QtWidgets.QMainWindow):
                     recursive_descent.check_binary_plus_minus()
                     end_time_traslate = time.time()
                 self.ui.textBrowser.append("Выражение переведно в постфиксную запись")
-                self.ui.textBrowser.append("Для перевода потребовалось: " + str((end_time_traslate - start_time_traslate)*1000) + " миллисекунд")
+                self.ui.textBrowser.append("Для перевода потребовалось: " + str((end_time_traslate - start_time_traslate)*1000000) + " миллисекунд")
                 global_func_val.result_string = global_func_val.postfix_string.replace("!", "-")
                 self.ui.lineEdit_2.setText(global_func_val.result_string)
             elif (isOk == 0):
@@ -79,7 +91,8 @@ class mainWindow(QtWidgets.QMainWindow):
 
     def find_value_button(self):
         if (global_func_val.postfix_string == ""):
-            self.ui.textBrowser.append("Введите исходное выражение и переведите ее в постфиксную форму")
+            self.ui.textBrowser.setText("")
+            self.ui.textBrowser.append("Введите исходное выражение и переведите его в постфиксную форму")
         else:
             row_count = self.ui.tableWidget.rowCount()
             while (row_count >= 0):
@@ -196,6 +209,10 @@ class mainWindow(QtWidgets.QMainWindow):
 
             self.ui.textBrowser.append("Значение выражения = " + str(stack.pop()))
             self.ui.textBrowser.append("Для решения потребовалось: " + str((end_time_find_value - start_time_find_value) * 1000) + " миллисекунд")
+
+    def info(self):
+        self.dialog = Dialog()
+        self.dialog.exec_()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

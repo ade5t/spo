@@ -125,6 +125,7 @@ class Ui_MainWindow(object):
         self.action2.setObjectName("action2")
         self.menu.addAction(self.action_4)
         self.menu_3.addAction(self.action_2)
+        self.menu_3.addAction(self.action_3)
         self.menubar.addAction(self.menu.menuAction())
         self.menubar.addAction(self.menu_3.menuAction())
 
@@ -132,6 +133,7 @@ class Ui_MainWindow(object):
         self.pushButton.clicked.connect(MainWindow.translate_button)
         self.pushButton_2.clicked.connect(MainWindow.find_value_button)
         self.action_4.triggered.connect(MainWindow.exit_button)
+        self.action_2.triggered.connect(MainWindow.info)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -150,10 +152,8 @@ class Ui_MainWindow(object):
         self.menu_3.setTitle(_translate("MainWindow", "Справка"))
         self.action.setText(_translate("MainWindow", "Выход"))
         self.action_2.setText(_translate("MainWindow", "О программе"))
-        self.action_3.setText(_translate("MainWindow", "Помощь"))
+        self.action_3.setText(_translate("MainWindow", "Справка"))
         self.action_4.setText(_translate("MainWindow", "Выход"))
-        self.action1.setText(_translate("MainWindow", "1"))
-        self.action2.setText(_translate("MainWindow", "2"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Входной символ"))
         item = self.tableWidget.horizontalHeaderItem(1)
