@@ -78,121 +78,124 @@ class mainWindow(QtWidgets.QMainWindow):
         sys.exit(app.exec())
 
     def find_value_button(self):
-        row_count = self.ui.tableWidget.rowCount()
-        while (row_count >= 0):
-            self.ui.tableWidget.removeRow(row_count)
-            row_count -= 1
-        self.ui.textBrowser.append("Находим значение выражения...")
+        if (global_func_val.postfix_string == ""):
+            self.ui.textBrowser.append("Введите исходное выражение и переведите ее в постфиксную форму")
+        else:
+            row_count = self.ui.tableWidget.rowCount()
+            while (row_count >= 0):
+                self.ui.tableWidget.removeRow(row_count)
+                row_count -= 1
+            self.ui.textBrowser.append("Находим значение выражения...")
 
-        start_time_find_value = 0
-        end_time_find_value = 0
-        row = 0
-        stack = []
-        global_func_val.index = 0
-        tmp_token = global_func_val.get_token(global_func_val.postfix_string)
-
-        start_time_find_value = time.time()
-
-        while tmp_token!= None:
-            if global_func_val.isNum(tmp_token):
-                stack.append(tmp_token)
-                data = []
-                data.append(QtWidgets.QTableWidgetItem(tmp_token))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("поместить в стек"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
-            elif (tmp_token == "!"):
-                tmp_val_1 = stack.pop()
-                tmp_val_1 = round((float(tmp_val_1) * -1),4)
-                stack.append(tmp_val_1)
-                data = []
-                data.append(QtWidgets.QTableWidgetItem("-"))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("сменить знак первого операнда в стеке"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(
-                    stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
-            elif (tmp_token == "+"):
-                tmp_val_2 = stack.pop()
-                tmp_val_1 = stack.pop()
-                stack.append(round((float(tmp_val_1) + float(tmp_val_2)), 4))
-                data = []
-                data.append(QtWidgets.QTableWidgetItem(tmp_token))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("сложение двух первых операндов в стеке"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(
-                    stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
-            elif (tmp_token == "-"):
-                tmp_val_2 = stack.pop()
-                tmp_val_1 = stack.pop()
-                stack.append(round((float(tmp_val_1) - float(tmp_val_2)), 4))
-                data = []
-                data.append(QtWidgets.QTableWidgetItem(tmp_token))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("вычитание двух первых операндов в стеке"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(
-                    stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
-            elif (tmp_token == "*"):
-                tmp_val_2 = stack.pop()
-                tmp_val_1 = stack.pop()
-                stack.append(round((float(tmp_val_1) * float(tmp_val_2)), 4))
-                data = []
-                data.append(QtWidgets.QTableWidgetItem(tmp_token))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("умножение двух первых операндов в стеке"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(
-                    stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
-            elif (tmp_token == "/"):
-                tmp_val_2 = stack.pop()
-                tmp_val_1 = stack.pop()
-                stack.append(round((float(tmp_val_1) / float(tmp_val_2)), 4))
-                data = []
-                data.append(QtWidgets.QTableWidgetItem(tmp_token))
-                data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem("деление двух первых операндов в стеке"))
-                data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                data.append(QtWidgets.QTableWidgetItem(
-                    stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
-                data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                self.ui.tableWidget.insertRow(row)
-                for i in range(3):
-                    self.ui.tableWidget.setItem(row, i, data[i])
-                row += 1
+            start_time_find_value = 0
+            end_time_find_value = 0
+            row = 0
+            stack = []
+            global_func_val.index = 0
             tmp_token = global_func_val.get_token(global_func_val.postfix_string)
 
-        end_time_find_value = time.time()
+            start_time_find_value = time.time()
 
-        self.ui.textBrowser.append("Значение выражения = " + str(stack.pop()))
-        self.ui.textBrowser.append("Для решения потребовалось: " + str((end_time_find_value - start_time_find_value) * 1000) + " миллисекунд")
+            while tmp_token!= None:
+                if global_func_val.isNum(tmp_token):
+                    stack.append(tmp_token)
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("поместить в стек"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                elif (tmp_token == "!"):
+                    tmp_val_1 = stack.pop()
+                    tmp_val_1 = round((float(tmp_val_1) * -1),4)
+                    stack.append(tmp_val_1)
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem("-"))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("сменить знак первого операнда в стеке"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                elif (tmp_token == "+"):
+                    tmp_val_2 = stack.pop()
+                    tmp_val_1 = stack.pop()
+                    stack.append(round((float(tmp_val_1) + float(tmp_val_2)), 4))
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("сложение двух первых операндов в стеке"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                elif (tmp_token == "-"):
+                    tmp_val_2 = stack.pop()
+                    tmp_val_1 = stack.pop()
+                    stack.append(round((float(tmp_val_1) - float(tmp_val_2)), 4))
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("вычитание двух первых операндов в стеке"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                elif (tmp_token == "*"):
+                    tmp_val_2 = stack.pop()
+                    tmp_val_1 = stack.pop()
+                    stack.append(round((float(tmp_val_1) * float(tmp_val_2)), 4))
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("умножение двух первых операндов в стеке"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                elif (tmp_token == "/"):
+                    tmp_val_2 = stack.pop()
+                    tmp_val_1 = stack.pop()
+                    stack.append(round((float(tmp_val_1) / float(tmp_val_2)), 4))
+                    data = []
+                    data.append(QtWidgets.QTableWidgetItem(tmp_token))
+                    data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem("деление двух первых операндов в стеке"))
+                    data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                    self.ui.tableWidget.insertRow(row)
+                    for i in range(3):
+                        self.ui.tableWidget.setItem(row, i, data[i])
+                    row += 1
+                tmp_token = global_func_val.get_token(global_func_val.postfix_string)
+
+            end_time_find_value = time.time()
+
+            self.ui.textBrowser.append("Значение выражения = " + str(stack.pop()))
+            self.ui.textBrowser.append("Для решения потребовалось: " + str((end_time_find_value - start_time_find_value) * 1000) + " миллисекунд")
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
