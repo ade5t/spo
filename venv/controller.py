@@ -214,6 +214,10 @@ class mainWindow(QtWidgets.QMainWindow):
         self.dialog = Dialog()
         self.dialog.exec_()
 
+    def help(self):
+        lol
+#         сюда сделать вызов файла справки
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     application = mainWindow()
