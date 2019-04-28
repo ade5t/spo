@@ -216,7 +216,10 @@ class mainWindow(QtWidgets.QMainWindow):
         self.dialog.exec_()
 
     def help(self):
-        os.startfile(r'help.chm')
+        try:
+            os.startfile(r'help.chm')
+        except Exception:
+            self.ui.textBrowser.setText("Файл справки не был найден")
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
