@@ -4,6 +4,7 @@ import recursive_descent
 import global_func_val
 import sys
 import time
+import os
 import about_program
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QLocale, QTranslator, QLibraryInfo
@@ -215,8 +216,7 @@ class mainWindow(QtWidgets.QMainWindow):
         self.dialog.exec_()
 
     def help(self):
-        lol
-#         сюда сделать вызов файла справки
+        os.startfile(r'help.chm')
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

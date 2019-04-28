@@ -11,14 +11,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(430, 144)
+        Dialog.setWindowModality(QtCore.Qt.WindowModal)
+        Dialog.resize(354, 104)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        Dialog.setMinimumSize(QtCore.QSize(430, 144))
-        Dialog.setMaximumSize(QtCore.QSize(430, 144))
+        Dialog.setMinimumSize(QtCore.QSize(354, 104))
+        Dialog.setMaximumSize(QtCore.QSize(354, 104))
         Dialog.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         Dialog.setModal(False)
         Dialog.setWindowFlags(QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowCloseButtonHint)
@@ -26,6 +27,18 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -37,11 +50,7 @@ class Ui_Dialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.gridLayout.addLayout(self.verticalLayout, 2, 0, 1, 1)
-        self.textBrowser = QtWidgets.QTextBrowser(Dialog)
-        self.textBrowser.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.textBrowser.setObjectName("textBrowser")
-        self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.verticalLayout, 1, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         self.pushButton.clicked.connect(Dialog.exit)
@@ -50,11 +59,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "О программе"))
+        self.label_2.setText(_translate("Dialog", "Программа для преобразования выражения из инфиксной записи"))
+        self.label_3.setText(_translate("Dialog", "в постфиксную с вычислением его значения."))
+        self.label.setText(_translate("Dialog", "Версия 0.9"))
         self.pushButton.setText(_translate("Dialog", "Ок"))
-        self.textBrowser.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Times New Roman,serif\'; font-size:12pt;\">Программа для преобразования выражения из инфиксной записи в постфиксную с вычислением его значения.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Times New Roman,serif\'; font-size:12pt;\">Версия 0.9</span></p></body></html>"))
 
