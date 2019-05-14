@@ -116,9 +116,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("поместить в стек"))
+                    data.append(QtWidgets.QTableWidgetItem("поместить в вершину стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem(stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                    data.append(QtWidgets.QTableWidgetItem(
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
@@ -131,10 +132,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem("-"))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("сменить знак первого операнда в стеке"))
+                    data.append(QtWidgets.QTableWidgetItem("сменить знак первого операнда в вершине стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     data.append(QtWidgets.QTableWidgetItem(
-                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
@@ -147,10 +148,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("сложение двух первых операндов в стеке"))
+                    data.append(QtWidgets.QTableWidgetItem("сложение двух первых операндов в вершине стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     data.append(QtWidgets.QTableWidgetItem(
-                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
@@ -163,10 +164,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("вычитание двух первых операндов в стеке"))
+                    data.append(QtWidgets.QTableWidgetItem("вычитание двух первых операндов в вершине стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     data.append(QtWidgets.QTableWidgetItem(
-                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
@@ -179,10 +180,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("умножение двух первых операндов в стеке"))
+                    data.append(QtWidgets.QTableWidgetItem("умножение двух первых операндов в вершине стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     data.append(QtWidgets.QTableWidgetItem(
-                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
@@ -195,10 +196,10 @@ class mainWindow(QtWidgets.QMainWindow):
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-                    data.append(QtWidgets.QTableWidgetItem("деление двух первых операндов в стеке"))
+                    data.append(QtWidgets.QTableWidgetItem("деление двух первых операндов в вершине стека"))
                     data[1].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     data.append(QtWidgets.QTableWidgetItem(
-                        stack.__str__().replace("'", "").replace(",", "").replace("[", "").replace("]", "")))
+                        stack.__str__().replace("'", "").replace(",", "   ").replace("[", "").replace("]", "")))
                     data[2].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
                     self.ui.tableWidget.insertRow(row)
                     for i in range(3):
