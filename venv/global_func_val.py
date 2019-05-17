@@ -173,16 +173,17 @@ def folding(str):
 # Вход - свернутая строка в инфиксной форме
 # Выход - свернутая строка в инфиксной форме с закодированным унарным минусом
 def unary_minus_coding(str):
-    tmp_index = len(str)-1
-    while tmp_index >= 0:
-        tmp_str = ""
-        # (str[tmp_index] == "-" and (str[tmp_index + 1] == "(" or (str[tmp_index + 1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index - 1]).isnumeric())):
-        if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(") or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
-            tmp_str += str[0: tmp_index]
-            tmp_str += "!"
-            tmp_str += str[tmp_index+1: len(str)]
-            str = tmp_str
-        tmp_index -= 1
+    if (not str[len(str)-1] == "-"):
+        tmp_index = len(str)-1
+        while tmp_index >= 0:
+            tmp_str = ""
+            # (str[tmp_index] == "-" and (str[tmp_index + 1] == "(" or (str[tmp_index + 1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index - 1]).isnumeric())):
+            if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(") or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
+                tmp_str += str[0: tmp_index]
+                tmp_str += "!"
+                tmp_str += str[tmp_index+1: len(str)]
+                str = tmp_str
+            tmp_index -= 1
     return str
 
 # Фукнция, считывающая очередную лексему для анализа
