@@ -25,6 +25,13 @@ class mainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Тут сделал более большой шрифт, но можно и уюбрать если что
+        tmp = QtGui.QFont(self.ui.lineEdit.font())
+        tmp.setPointSize(10)
+        self.ui.lineEdit.setFont(tmp)
+        self.ui.lineEdit_2.setFont(tmp)
+        self.ui.tableWidget.setFont(tmp)
+
     def translate_button(self):
         start_time_traslate = 0
         end_time_traslate = 0
