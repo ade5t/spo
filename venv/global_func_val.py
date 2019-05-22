@@ -169,7 +169,7 @@ def folding(str):
 # Функция, которая заменяет унарный минус символом "!", чтобы унарный
 # и бинарный минус кодировались различным образом
 # У унарного минуса после сворачивания справа всегда число либо "(", а слева
-# всегда НЕ число и НЕ открывающая скобка.
+# всегда НЕ число.
 # Вход - свернутая строка в инфиксной форме
 # Выход - свернутая строка в инфиксной форме с закодированным унарным минусом
 def unary_minus_coding(str):
@@ -178,7 +178,7 @@ def unary_minus_coding(str):
         while tmp_index >= 0:
             tmp_str = ""
             # (str[tmp_index] == "-" and (str[tmp_index + 1] == "(" or (str[tmp_index + 1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index - 1]).isnumeric())):
-            if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(") or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
+            if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(" and not str[tmp_index-1].isnumeric()) or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
                 tmp_str += str[0: tmp_index]
                 tmp_str += "!"
                 tmp_str += str[tmp_index+1: len(str)]
