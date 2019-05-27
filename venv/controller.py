@@ -15,6 +15,14 @@ class Dialog(QtWidgets.QDialog):
         self.ui = about_program.Ui_Dialog()
         self.ui.setupUi(self)
 
+        my_font = QtGui.QFont(self.ui.label_2.font())
+        my_font.setPointSize(11)
+        self.ui.label_2.setFont(my_font)
+        self.ui.label_3.setFont(my_font)
+        self.ui.label.setFont(my_font)
+        self.ui.pushButton.setFont(my_font)
+
+
     def exit(self):
         self.close()
 
@@ -26,11 +34,28 @@ class mainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         # Тут сделал более большой шрифт, но можно и уюбрать если что
-        # tmp = QtGui.QFont(self.ui.lineEdit.font())
-        # tmp.setPointSize(10)
-        # self.ui.lineEdit.setFont(tmp)
-        # self.ui.lineEdit_2.setFont(tmp)
-        # self.ui.tableWidget.setFont(tmp)
+        my_font = QtGui.QFont(self.ui.lineEdit.font())
+        my_font.setPointSize(11)
+        self.ui.label_2.setFont(my_font)
+        self.ui.label.setFont(my_font)
+        self.ui.groupBox.setFont(my_font)
+        self.ui.radioButton.setFont(my_font)
+        self.ui.radioButton_2.setFont(my_font)
+        self.ui.label_3.setFont(my_font)
+        self.ui.label_4.setFont(my_font)
+
+        self.ui.pushButton.setFont(my_font)
+        self.ui.pushButton_2.setFont(my_font)
+
+        self.ui.menu_3.setFont(my_font)
+        self.ui.menu.setFont(my_font)
+
+        self.ui.tableWidget.setFont(my_font)
+
+        self.ui.lineEdit.setFont(my_font)
+        self.ui.lineEdit_2.setFont(my_font)
+        self.ui.textBrowser.setFont(my_font)
+
 
     def translate_button(self):
         start_time_traslate = 0

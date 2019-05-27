@@ -12,14 +12,14 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.setWindowModality(QtCore.Qt.WindowModal)
-        Dialog.resize(354, 104)
+        Dialog.resize(424, 124)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        Dialog.setMinimumSize(QtCore.QSize(354, 104))
-        Dialog.setMaximumSize(QtCore.QSize(354, 104))
+        Dialog.setMinimumSize(QtCore.QSize(424, 124))
+        Dialog.setMaximumSize(QtCore.QSize(424, 124))
         Dialog.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         Dialog.setModal(False)
         Dialog.setWindowFlags(QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowCloseButtonHint)
@@ -59,8 +59,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "О программе"))
-        self.label_2.setText(_translate("Dialog", "Программа для преобразования выражения из инфиксной записи"))
-        self.label_3.setText(_translate("Dialog", "в постфиксную с вычислением его значения."))
+        self.label_2.setText(_translate("Dialog", "Программа для преобразования выражения из инфиксной"))
+        self.label_3.setText(_translate("Dialog", "записи в постфиксную с вычислением его значения."))
         self.label.setText(_translate("Dialog", "Версия 0.9"))
         self.pushButton.setText(_translate("Dialog", "Ок"))
 
