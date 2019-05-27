@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['controller.py'],
-             pathex=['C:\\Users\\ade5t\\Desktop\\spo\\venv'],
+a = Analysis(['venv\\controller.py'],
+             pathex=['C:\\Users\\ade5t\\Desktop\\spo'],
              binaries=[],
              datas=[],
              hiddenimports=[],
