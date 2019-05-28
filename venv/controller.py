@@ -60,7 +60,8 @@ class mainWindow(QtWidgets.QMainWindow):
     def translate_button(self):
         start_time_traslate = 0
         end_time_traslate = 0
-        global_func_val.input_string = self.ui.lineEdit.text();
+        global_func_val.input_string = self.ui.lineEdit.text().replace(" ", "");
+        self.ui.lineEdit.setText(global_func_val.input_string)
         self.ui.textBrowser.setText("")
         self.ui.lineEdit_2.setText("")
         row_count = self.ui.tableWidget.rowCount()
@@ -116,7 +117,16 @@ class mainWindow(QtWidgets.QMainWindow):
                 errorMessage =  'Неизвестная ошибка'
                 self.ui.textBrowser.append(errorMessage)
             else:
-                errorMessage = 'После ' + (isOk[0].__str__()) + ' ' + 'с позицей ' + (isOk[1].__str__()) + ' стоит некорректный токен: ' + global_func_val.input_string[0:isOk[1]] + "<font color=\"Red\">" + global_func_val.input_string[isOk[1]:isOk[2]] + "</font>" + global_func_val.input_string[isOk[2]:len(global_func_val.input_string)]
+                if isOk[1] == -1:
+                    errorMessage = 'После ' + (isOk[0].__str__()) + ' ' + 'с неизвестной позицей' + \
+                                   ' стоит некорректный токен: ' + global_func_val.input_string
+                else:
+                    errorMessage = 'После ' + (isOk[0].__str__()) + ' ' + 'с позицей ' + (
+                        isOk[1].__str__()) + ' стоит некорректный токен: ' + global_func_val.input_string[0:isOk[
+                        1]] + "<font color=\"Red\">" + global_func_val.input_string[
+                                                       isOk[1]:isOk[2]] + "</font>" + global_func_val.input_string[
+                                                                                      isOk[2]:len(
+                                                                                          global_func_val.input_string)]
                 self.ui.textBrowser.append(errorMessage)
 
     def exit_button(self):
@@ -224,7 +234,11 @@ class mainWindow(QtWidgets.QMainWindow):
                 elif (tmp_token == "/"):
                     tmp_val_2 = stack.pop()
                     tmp_val_1 = stack.pop()
-                    stack.append(round((float(tmp_val_1) / float(tmp_val_2)), 4))
+                    try:
+                        stack.append(round((float(tmp_val_1) / float(tmp_val_2)), 4))
+                    except ZeroDivisionError:
+                        self.ui.textBrowser.append("Обнаружено деление на 0!")
+                        return ""
                     data = []
                     data.append(QtWidgets.QTableWidgetItem(tmp_token))
                     data[0].setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)

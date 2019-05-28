@@ -54,6 +54,7 @@ def string_validation(str):
                 tmp_token = get_token(infix_string)
                 tmp_num_brackets += 1
             else:
+                if prev_position == 0: prev_position = 1
                 tmp_str = str[prev_position - 1: prev_position + 2]
                 tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
                 index = tmp_pos_error_1
@@ -68,6 +69,7 @@ def string_validation(str):
                 tmp_token = get_token(infix_string)
                 tmp_num_brackets -= 1
             else:
+                if prev_position == 0: prev_position = 1
                 tmp_str = str[prev_position - 1: prev_position + 2]
                 tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
                 index = tmp_pos_error_1
@@ -81,6 +83,7 @@ def string_validation(str):
                 state = tmp_token
                 tmp_token = get_token(infix_string)
             else:
+                if prev_position == 0: prev_position = 1
                 tmp_str = str[prev_position - 1: prev_position + 2]
                 tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
                 index = tmp_pos_error_1
@@ -94,6 +97,7 @@ def string_validation(str):
                 state = tmp_token
                 tmp_token = get_token(infix_string)
             else:
+                if prev_position == 0: prev_position = 1
                 tmp_str = str[prev_position - 1: prev_position + 2]
                 tmp_pos_error_1 = input_string.find(tmp_str.replace("!", "-"), prev_position - 1, len(input_string))
                 index = tmp_pos_error_1
@@ -153,7 +157,7 @@ def folding(str):
                 tmp_index +=1
             if (num_min % 2 == 0 and num_min > 1):
                 tmp_str += str[0: prev_tmp_index]
-                if (len(tmp_str) > 0 and ((tmp_str[len(tmp_str)-1]).isnumeric() or tmp_str[len(tmp_str)-1] == ")")): tmp_str += "+"
+                if (len(tmp_str) > 0 and (((tmp_str[len(tmp_str)-1]).isnumeric() or tmp_str[len(tmp_str)-1] == ")") and (tmp_index < len(str)-1 and not str[tmp_index] in math_op and str[tmp_index] != ")"))): tmp_str += "+"
                 tmp_str += str[tmp_index: len(str)]
                 str = tmp_str
                 tmp_index = prev_tmp_index
