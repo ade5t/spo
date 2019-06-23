@@ -157,7 +157,7 @@ def folding(str):
                 tmp_index +=1
             if (num_min % 2 == 0 and num_min > 1):
                 tmp_str += str[0: prev_tmp_index]
-                if (len(tmp_str) > 0 and (((tmp_str[len(tmp_str)-1]).isnumeric() or tmp_str[len(tmp_str)-1] == ")") and (tmp_index < len(str)-1 and not str[tmp_index] in math_op and str[tmp_index] != ")"))): tmp_str += "+"
+                if (len(tmp_str) > 0 and (((tmp_str[len(tmp_str)-1]).isnumeric() or tmp_str[len(tmp_str)-1] == ")") and (tmp_index < len(str)-1 and ((not str[tmp_index] in math_op) or str[tmp_index] == "(") and str[tmp_index] != ")"))): tmp_str += "+"
                 tmp_str += str[tmp_index: len(str)]
                 str = tmp_str
                 tmp_index = prev_tmp_index
@@ -182,7 +182,7 @@ def unary_minus_coding(str):
         while tmp_index >= 0:
             tmp_str = ""
             # (str[tmp_index] == "-" and (str[tmp_index + 1] == "(" or (str[tmp_index + 1]).isnumeric()) and (tmp_index == 0 or not (str[tmp_index - 1]).isnumeric())):
-            if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(" and not str[tmp_index-1].isnumeric()) or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
+            if ((str[tmp_index] == "-") and ((tmp_index == 0 and str[tmp_index+1].isnumeric()) or (str[tmp_index+1] == "(" and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")") or (str[tmp_index+1].isnumeric() and not str[tmp_index-1].isnumeric() and str[tmp_index-1] != ")"))):
                 tmp_str += str[0: tmp_index]
                 tmp_str += "!"
                 tmp_str += str[tmp_index+1: len(str)]
